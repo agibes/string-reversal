@@ -20,26 +20,51 @@ const App = () => {
 
         //chose to use the spread operator because split does not handle uncommon characters well
         // var newArr = inputValue.split('');
-        var newArr = [...inputValue];
+        var characterArray = [...inputValue];
 
         //reverse the array
-        const newNewArr = newArr.reverse();
-        //convert the array back to a string
-        const reversedString = newNewArr.join('');
+        const reversedCharacterArray = characterArray.reverse();
+        // //convert the array back to a string
+        // const reversedString = reversedCharacterArray.join('');
         
-        //return the string
-        var pElem = document.querySelector('p');
-        if (!pElem) {
-            var p = document.createElement('p');
-            p.appendChild(document.createTextNode(reversedString));
-            root.appendChild(p);
-        } else {
-            root.removeChild(pElem);
-            const p = document.createElement('p');
-            p.appendChild(document.createTextNode(reversedString));
-            root.appendChild(p);
+        // //display the reversed string
+        // var pElem = document.querySelector('p');
+        // if (!pElem) {
+        //     var p = document.createElement('p');
+        //     p.appendChild(document.createTextNode(reversedString));
+        //     root.appendChild(p);
+        // } else {
+        //     root.removeChild(pElem);
+        //     const p = document.createElement('p');
+        //     p.appendChild(document.createTextNode(reversedString));
+        //     root.appendChild(p);
+        // }
+
+        // //TDLR
+        // // e.addEventListener("input", () => {[...document.querySelector('#input').value].reverse().join('')});
+
+        //////////////////
+        // USING FOR OF //
+        //////////////////
+        const p = document.createElement('p');
+
+        for (const e of reversedCharacterArray) {
+            reversedString = '' + e;
+        
+            var pElem = document.querySelector('p');
+
+            if (!pElem) {
+                p.appendChild(document.createTextNode(reversedString));
+                root.appendChild(p);
+            } else {
+                root.removeChild(pElem);
+                p.appendChild(document.createTextNode(''));
+                p.appendChild(document.createTextNode(reversedString));
+                root.appendChild(p);
+            }
         }
     })
+
 }
 
 App();
